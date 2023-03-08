@@ -2,12 +2,12 @@ package e1;
 
 public class PieceFactoryImpl implements PieceFactory {
     @Override
-    public JumpStrategy getPawn() {
-        return null;
+    public JumpStrategy getPawnAt(Pair<Integer, Integer> position) {
+        return new PawnJumpStrategy(position);
     }
 
     @Override
-    public JumpStrategy getKnight() {
-        return null;
+    public JumpStrategy getKnightAt(Pair<Integer, Integer> position) {
+        return new KnightJumpStrategy(position);
     }
 }

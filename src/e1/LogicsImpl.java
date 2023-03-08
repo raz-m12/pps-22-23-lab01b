@@ -16,10 +16,10 @@ public class LogicsImpl implements Logics {
     }
 
 
-	public LogicsImpl(int size, Pair<Integer, Integer> initPawnPosition, Pair<Integer, Integer> initKnightPosition){
+	public LogicsImpl(int size, JumpStrategy concealedPiece, JumpStrategy seeker){
 		this.size = size;
-		this.concealedPiece = new PawnJumpStrategy(initPawnPosition);
-		this.seeker = new KnightJumpStrategy(initKnightPosition);
+		this.concealedPiece = concealedPiece;
+		this.seeker = seeker;
 	}
     
 	@Override

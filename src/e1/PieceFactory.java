@@ -1,6 +1,6 @@
 package e1;
 
 public interface PieceFactory {
-    JumpStrategy getPawn();
-    JumpStrategy getKnight();
+    JumpStrategy getPawnAt(Pair<Integer, Integer> position);
+    JumpStrategy getKnightAt(Pair<Integer, Integer> position);
 }

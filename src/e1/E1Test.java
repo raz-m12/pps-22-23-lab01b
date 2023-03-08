@@ -13,11 +13,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class E1Test {
     Logics app;
+    PieceFactory factory;
     Pair<Integer, Integer> pawnInitialPosition = new Pair<>(2,0);
     Pair<Integer, Integer> knightInitialPosition = new Pair<>(0,0);
     @BeforeEach
     void beforeEach(){
-        app = new LogicsImpl(10, pawnInitialPosition, knightInitialPosition);
+        this.factory = new PieceFactoryImpl();
+        var pawn = this.factory.getPawnAt(pawnInitialPosition);
+        var knight = this.factory.getKnightAt(knightInitialPosition);
+        app = new LogicsImpl(10, pawn, knight);
     }
 
     @Test
