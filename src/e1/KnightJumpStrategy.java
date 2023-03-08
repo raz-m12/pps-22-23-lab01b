@@ -13,7 +13,4 @@ public class KnightJumpStrategy extends GenericJumpStrategy {
         int y = toBePosition.getY()-this.piecePosition.getY();
         return x!=0 && y!=0 && Math.abs(x)+Math.abs(y)==3;
     }
-
-
-
 }

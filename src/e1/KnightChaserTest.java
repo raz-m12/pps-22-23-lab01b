@@ -1,24 +1,15 @@
 package e1;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Backlog
- * 1. Refactoring: use a strategy for deciding the behavior of the knight.
- */
+public class KnightChaserTest extends PieceTest {
 
-public class E1Test {
-    Logics app;
-    PieceFactory factory;
-    Pair<Integer, Integer> pawnInitialPosition = new Pair<>(2,0);
-    Pair<Integer, Integer> knightInitialPosition = new Pair<>(0,0);
     @BeforeEach
-    void beforeEach(){
-        this.factory = new PieceFactoryImpl();
+    void setup() {
+        super.initFactory();
         var pawn = this.factory.getPawnAt(pawnInitialPosition);
         var knight = this.factory.getKnightAt(knightInitialPosition);
         app = new LogicsImpl(10, pawn, knight);
