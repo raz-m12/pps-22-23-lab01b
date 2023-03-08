@@ -40,7 +40,6 @@ public class E1Test {
         assertTrue(app.hasKnight(newX, newY));
     }
 
-    @Disabled
     @Test
     void knightCanCapturePawn() {
         app.hit(2, 1);
