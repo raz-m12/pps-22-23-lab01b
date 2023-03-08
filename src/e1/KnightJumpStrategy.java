@@ -26,7 +26,15 @@ public class KnightJumpStrategy implements JumpStrategy {
     }
 
     @Override
-    public Pair<Integer, Integer> getCurrentPosition() {
+    public boolean hits(JumpStrategy piece) {
+        var position = piece.currentPosition();
+        // -> this.currentPosition().equals(piece.currentPosition());
+        return position.equals(this.knightPosition);
+    }
+
+    @Override
+    public Pair<Integer, Integer> currentPosition() {
         return this.knightPosition;
     }
+
 }

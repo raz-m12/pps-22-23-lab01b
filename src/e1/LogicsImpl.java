@@ -4,28 +4,22 @@ import java.util.*;
 
 public class LogicsImpl implements Logics {
 
-	private final Pair<Integer,Integer> pawn;
 	private final Random random = new Random();
 	private final int size;
-	private final JumpStrategy knightStrategy;
+	private final JumpStrategy seeker;
+	private final JumpStrategy concealedPiece;
 	 
     public LogicsImpl(int size){
     	this.size = size;
-        this.pawn = this.randomEmptyPosition();
-		this.knightStrategy = new KnightJumpStrategy(this.randomEmptyPosition());
+        this.concealedPiece = new PawnJumpStrategy(this.randomEmptyPosition());
+		this.seeker = new KnightJumpStrategy(this.randomEmptyPosition());
     }
 
 
 	public LogicsImpl(int size, Pair<Integer, Integer> initPawnPosition, Pair<Integer, Integer> initKnightPosition){
 		this.size = size;
-		this.pawn = initPawnPosition;
-		this.knightStrategy = new KnightJumpStrategy(initKnightPosition);
-	}
-
-	private Pair<Integer,Integer> randomEmptyPosition(){
-		Pair<Integer,Integer> pos = new Pair<>(this.random.nextInt(size),this.random.nextInt(size));
-		// the recursive call below prevents clash with an existing pawn
-		return this.pawn!=null && this.pawn.equals(pos) ? randomEmptyPosition() : pos;
+		this.concealedPiece = new PawnJumpStrategy(initPawnPosition);
+		this.seeker = new KnightJumpStrategy(initKnightPosition);
 	}
     
 	@Override
@@ -35,20 +29,26 @@ public class LogicsImpl implements Logics {
 		}
 
 		var toBePosition = new Pair<>(row, col);
-		if(this.knightStrategy.canJumpTo(toBePosition)) {
-			this.knightStrategy.updatePosition(toBePosition);
-			return this.pawn.equals(this.knightStrategy.getCurrentPosition());
+		if(this.seeker.canJumpTo(toBePosition)) {
+			this.seeker.updatePosition(toBePosition);
+			return this.seeker.hits(this.concealedPiece);
 		}
 		return false;
 	}
 
 	@Override
 	public boolean hasKnight(int row, int col) {
-		return this.knightStrategy.selfLocatedAt(new Pair<>(row, col));
+		return this.seeker.selfLocatedAt(new Pair<>(row, col));
 	}
 
 	@Override
 	public boolean hasPawn(int row, int col) {
-		return this.pawn.equals(new Pair<>(row,col));
+		return this.concealedPiece.selfLocatedAt(new Pair<>(row,col));
+	}
+
+	private Pair<Integer,Integer> randomEmptyPosition(){
+		Pair<Integer,Integer> pos = new Pair<>(this.random.nextInt(size),this.random.nextInt(size));
+		var pawn = this.concealedPiece.currentPosition();
+		return pawn!=null && pawn.equals(pos) ? randomEmptyPosition() : pos;
 	}
 }
