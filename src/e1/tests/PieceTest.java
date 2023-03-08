@@ -1,5 +1,9 @@
-package e1;
+package e1.tests;
 
+import e1.gui.Logics;
+import e1.Pair;
+import e1.factories.PieceFactory;
+import e1.factories.PieceFactoryImpl;
 import org.junit.jupiter.api.BeforeEach;
 
 

@@ -1,4 +1,9 @@
-package e1;
+package e1.factories;
+
+import e1.Pair;
+import e1.strategies.JumpStrategy;
+import e1.strategies.KnightJumpStrategy;
+import e1.strategies.PawnJumpStrategy;
 
 public class PieceFactoryImpl implements PieceFactory {
     @Override

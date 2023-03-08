@@ -1,4 +1,6 @@
-package e1;
+package e1.strategies;
+
+import e1.Pair;
 
 public abstract class GenericJumpStrategy implements JumpStrategy {
 

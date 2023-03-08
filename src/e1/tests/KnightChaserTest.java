@@ -1,9 +1,9 @@
-package e1;
+package e1.tests;
 
+import e1.gui.LogicsImpl;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class KnightChaserTest extends PieceTest {
 
@@ -20,7 +20,7 @@ public class KnightChaserTest extends PieceTest {
         var knightX = knightInitialPosition.getX();
         var knightY = knightInitialPosition.getY();
 
-        assertTrue(app.hasKnight(knightX, knightY));
+        Assertions.assertTrue(app.hasKnight(knightX, knightY));
     }
 
     @Test
@@ -28,7 +28,7 @@ public class KnightChaserTest extends PieceTest {
         var pawnX = pawnInitialPosition.getX();
         var pawnY = pawnInitialPosition.getY();
 
-        assertTrue(app.hasPawn(pawnX, pawnY));
+        Assertions.assertTrue(app.hasPawn(pawnX, pawnY));
     }
 
     @Test
@@ -37,13 +37,13 @@ public class KnightChaserTest extends PieceTest {
         var newY = 2;
         app.hit(newX, newY);
 
-        assertTrue(app.hasKnight(newX, newY));
+        Assertions.assertTrue(app.hasKnight(newX, newY));
     }
 
     @Test
     void knightCanCapturePawn() {
         app.hit(1, 2);
 
-        assertTrue(app.hit(2, 0));
+        Assertions.assertTrue(app.hit(2, 0));
     }
 }

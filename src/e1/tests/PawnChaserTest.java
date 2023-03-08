@@ -1,5 +1,6 @@
-package e1;
+package e1.tests;
 
+import e1.gui.LogicsImpl;
 import org.junit.jupiter.api.BeforeEach;
 
 public class PawnChaserTest extends PieceTest {

@@ -1,4 +1,9 @@
-package e1;
+package e1.gui;
+
+import e1.Pair;
+import e1.strategies.JumpStrategy;
+import e1.strategies.KnightJumpStrategy;
+import e1.strategies.PawnJumpStrategy;
 
 import java.util.*;
 
@@ -48,7 +53,7 @@ public class LogicsImpl implements Logics {
 
 	private Pair<Integer,Integer> randomEmptyPosition(){
 		Pair<Integer,Integer> pos = new Pair<>(this.random.nextInt(size),this.random.nextInt(size));
-		var pawn = this.concealedPiece.currentPosition();
+		var pawn = this.concealedPiece != null? this.concealedPiece.currentPosition(): null;
 		return pawn!=null && pawn.equals(pos) ? randomEmptyPosition() : pos;
 	}
 }
